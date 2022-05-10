@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>
+            Formulario
+        </title>
+    </head>
+    <body>
+        <h1>
+            Formulario
+        </h1>
+        <div>
+            <label>Nombre: </label>
+            <input type="text" id="txtNombre" />
+        </div>
+        <div>
+            <label>Edad: </label>
+            <input type="number" id="txtEdad" />
+        </div>
+        <div>
+            <label>Ingreso: </label>
+            <input type="number" id="txtIngreso" />
+        </div>
+        <input type="Button" Value="Enviar" OnClick="verificar()" />
+    
+        <script src="js/formulario.js"></script>
+        <script>
+            let registros = [];
+            function verificar(){
+                let registro = verificarFormulario(txtNombre.value, txtEdad.value, txtIngreso.value);
+                if(typeof(registro) != 'undefined'){
+                    registros.push(registro);
+                    registros.forEach(function(r){
+                        console.log(r);
+                    });
+                }
+                txtNombre.value = '';
+                txtEdad.value = '';
+                txtIngreso.value = '';   
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fundamentos de DOM (Document Object Model) con Javascript</title>
+    </head>
+    <body>
+        <div id="Mensaje">Texto Fijo</div>
+        <div id="Mensaje2" class="mensajeImportante">Mensaje 2</div>
+        <div id="Mensaje3" class="mensajeImportante">Mensaje 3</div>
+        <ul id="ListaFrutas">
+            <li>Manzanas</li>
+            <li>Duraznos</li>
+            <li>Mangos</li>
+            <li>Sandias</li>
+        </ul>
+        <div>
+            <label>Nombre: </label>
+            <input type="text" id="txtNombreFruta" />
+            <input type="button" Value="Agregar" onclick="agregarFruta()" />
+        </div>
+        <ol>
+            <li>Invierno</li>
+            <li>Otoño</li>
+            <li>Verano</li>
+            <li>Primavera</li>
+        </ol>
+        <script>
+            console.log(document.title);
+            console.log(document.doctype);
+            console.log(document.lastModified);
+            let mensaje = document.getElementById("Mensaje");
+            if(mensaje)
+                alert(mensaje.innerText);
+                mensaje.innerHTML += "Modificado con JavaScript";
+
+            let losDivs = document.getElementsByTagName("div");
+            console.log(`Hay ${losDivs.length} divs en el documento....`);
+            if(losDivs.length > 0)
+                losDivs[0].innerText = "Este es el primer DIV del documento";
+
+            let losDivsImportantes = document.getElementsByClassName("mensajeImportante");
+            console.log(`Hay ${losDivsImportantes.length} divs importantes en el documento....`);
+            let ListaFrutas = document.getElementById("ListaFrutas");
+            ListaFrutas.innerHTML=""; // De esta forma borramos todo el html que tiene dentro la lista (etiqueta <ul></ul>)
+
+            let nuevaFruta = document.createElement("li");
+            nuevaFruta.innerText="Naranjas";
+            ListaFrutas.appendChild(nuevaFruta);
+
+            nuevaFruta = document.createElement("li");
+            nuevaFruta.innerText="Mandarinas";
+            ListaFrutas.appendChild(nuevaFruta);
+
+            ListaFrutas.childNodes.forEach(child => {
+                console.log(child.innerText);
+            });
+
+            ListaFrutas.childNodes.forEach(function(childNode){
+                console.log(childNode.innerText);
+            });
+
+        </script>
+        <script>
+            function agregarFruta(){
+                let ListaFrutas = document.getElementById("ListaFrutas");
+                ListaFrutas.innerHTML += `<li>${txtNombreFruta.value}</li>`;
+                txtNombreFruta.value = "";
+            }
+        </script>
+    </body>
+</html>
