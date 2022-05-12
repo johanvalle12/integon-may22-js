@@ -360,7 +360,36 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Authors table</h6>
-              <button type="Button" class="btn btn-outline-primary btn-sm mb-0 me-3" onclick="agregarAutor()"> Add Author</button>
+              <button type="Button" class="btn btn-outline-primary btn-sm mb-0 me-3" onclick="mostrarFormularioAutor()"> Add Author</button>
+              <br><br>
+              <div style="display: none" id="formularioAutor">
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <input type="text" id="txtNombre" class="form-control" placeholder="Nombre" />
+                  </div>
+                  <div class="col-6">
+                    <input type="text" id="txtCorreo" class="form-control" placeholder="Correo" />
+                  </div>
+                  <div class="col-3">
+                    <input type="text" id="txtFoto" class="form-control" placeholder="Foto" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <input type="text" id="txtDepartamento" class="form-control" placeholder="Departamento" />
+                  </div>
+                  <div class="col-3">
+                    <input type="text" id="txtPuesto" class="form-control" placeholder="Puesto" />
+                  </div>
+                  <div class="col-3">
+                    <input type="text" id="txtFechaIngreso" class="form-control" placeholder="Fecha Ingreso" />
+                  </div>
+                  <div class="col-3">
+                    <input type="text" id="txtStatus" class="form-control" placeholder="Estatus" />
+                  </div>
+                </div>
+                <button type="Button" class="btn btn-outline-primary btn-sm mb-0 me-3" onclick="agregarAutor()"> Agregar</button>
+              </div> 
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -374,7 +403,7 @@
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="listaAutores">
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
@@ -879,7 +908,12 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../assets/js/misJs/autor.js"></script>
   <script src="../assets/js/misJs/agregarAutor.js"></script>
+  <script src="../assets/js/misJs/cargarRegistros.js"></script>
+
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -1,33 +1,51 @@
-let cuentas = [];
+// let cuentas = [];
 
-cuentas.push({
-    "email" : "johan@gmail.com",
-    "password" : "123456"
-});
-cuentas.push({
-    "email" : "johan2@gmail.com",
-    "password" : "654321"
-});
-cuentas.push({
-    "email" : "johan3@gmail.com",
-    "password" : "123654"
-});
-cuentas.push({
-    "email" : "johan4@gmail.com",
-    "password" : "654123"
-});
+// cuentas.push({
+//     "email" : "johan@gmail.com",
+//     "password" : "123456"
+// });
+// cuentas.push({
+//     "email" : "johan2@gmail.com",
+//     "password" : "654321"
+// });
+// cuentas.push({
+//     "email" : "johan3@gmail.com",
+//     "password" : "123654"
+// });
+// cuentas.push({
+//     "email" : "johan4@gmail.com",
+//     "password" : "654123"
+// });
 
-function verificarCredenciales(){
+async function cargarUsuarios(){
+    let url = "http://localhost:3005/usuarios";
+    let usuarios = await fetch(url);
+    let usuarios2 = await usuarios.json();
+    // let usuarios = await fetch(url)
+    //                 .then((response) => {
+    //                     return response.json();
+    //                 }).then((data) => {
+    //                     usuarios2 = data.usuarios;
+    //                     return data.usuarios;
+    //                 }).catch(function(error){
+    //                     console.log("El servidor no esta disponible");
+    //                 });
+    return usuarios2;
+    
+}
+
+async function verificarCredenciales(){
     let correo = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    //console.log(correo);
-    //console.log(password);
 
-    let index = cuentas.findIndex(c => c.email == correo);
-    //console.log(index);
+    let users = await cargarUsuarios();
+    let usuarios = users.usuarios;
+    //console.log(users.usuarios);
+    let index = usuarios.findIndex(u => u.correo.toLowerCase() == correo.toLowerCase());
+    console.log(index);
     if(index != -1)
     {
-        if(cuentas[index].password == password){
+        if(usuarios[index].password == password){
             //console.log("Inicio de sesion correcto");
             let login = document.getElementById("login");
             login.hidden = true;
@@ -42,12 +60,38 @@ function verificarCredenciales(){
         }
         else
         {
-            alert("Las credenciasles no son correctas.");
+            alert("Las credenciales no son correctas.");
         }
     }
     else {
-        alert("Las credenciasles no son correctas.");
+        alert("Las credenciales no son correctas2.");
     }
+    //console.log(usuarios);
+    // let index = usuarios.findIndex(c => c.email == correo);
+    // //console.log(index);
+    // if(index != -1)
+    // {
+    //     if(usuarios[index].password == password){
+    //         //console.log("Inicio de sesion correcto");
+    //         let login = document.getElementById("login");
+    //         login.hidden = true;
+    //         let loggedIn = document.getElementById("loggedIn");
+    //         loggedIn.hidden = false;
+    //         loggedIn.innerHTML += `
+    //             <div class="font-weight-bolder text-info text-gradient">
+    //                 Bienvenido ${correo}
+    //             </div>
+    //             <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" onclick="cerrarSesion()">Cerrar Sesion</button>
+    //         `;
+    //     }
+    //     else
+    //     {
+    //         alert("Las credenciasles no son correctas.");
+    //     }
+    // }
+    // else {
+    //     alert("Las credenciasles no son correctas.");
+    // }
     
 }
 function cerrarSesion(){
