@@ -1,12 +1,14 @@
 $(document).ready(function () {
-    cargarAutores();
+    cargarAutores('');
 });
 
-function cargarAutores(){
+function cargarAutores(filtro){
+    if(filtro == "All")
+        filtro = '';
     $.ajax({
         method: 'GET',
         dataType: 'json',
-        url: 'http://localhost:3005/autores',
+        url: 'http://localhost:3005/autores'+filtro,
         success: function (data) {
             //console.log(data.autores)
             var html = "";

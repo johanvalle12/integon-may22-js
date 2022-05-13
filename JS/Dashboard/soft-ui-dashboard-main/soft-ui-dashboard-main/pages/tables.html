@@ -359,8 +359,20 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Authors table</h6>
-              <button type="Button" class="btn btn-outline-primary btn-sm mb-0 me-3" onclick="mostrarFormularioAutor()"> Add Author</button>
+              <div class="row mb-3">
+                <div class="col-1">
+                  <h6>Authors table</h6>
+                </div>
+                <div id="filters" class="container">
+                    <button id="All" class="btn btn-sm bg-gradient-secondary">All</button>
+                    <button id="/Programator" class="btn btn-sm bg-gradient-secondary">Programator</button>
+                    <button id="/Manager" class="btn btn-sm bg-gradient-secondary">Manager</button>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-2">
+                  <button type="Button" class="btn btn-outline-primary btn-sm mb-0 me-3" onclick="mostrarFormularioAutor()"> Add Author</button>
+                </div>
+              </div>
               <br><br>
               <div style="display: none" id="formularioAutor">
                 <div class="row mb-3">
@@ -912,6 +924,7 @@
   <script src="../assets/js/misJs/autor.js"></script>
   <script src="../assets/js/misJs/agregarAutor.js"></script>
   <script src="../assets/js/misJs/cargarRegistros.js"></script>
+  <script src="../assets/js/misJs/filtroPuestos.js"></script>
 
 
   <script>

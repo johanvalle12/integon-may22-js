@@ -47,7 +47,22 @@ app.get("/alumnos", (request,response) => {
     })
 });
 
-app.get("/autores", (request,response) => {
+app.get("/autores/:puesto", (request,response) => {
+    console.log("Se ejecuto la ruta autores con filtro...");
+    let filtro = "";
+    if(request.params.puesto != "All")
+        filtro = request.params.puesto;
+    autores.find({puesto:filtro}).toArray((err,items) => {
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+        response.status(200).json({autores:items});
+    })
+});
+
+app.get("/autores/", (request,response) => {
     console.log("Se ejecuto la ruta autores...");
     autores.find().toArray((err,items) => {
         if(err){
