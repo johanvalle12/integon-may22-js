@@ -38,6 +38,9 @@ async function verificarCredenciales(){
     let correo = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
+    if(correo == "" || password == "")
+        return alert("Favor de llenar las credenciales.");
+
     let users = await cargarUsuarios();
     let usuarios = users.usuarios;
     //console.log(users.usuarios);
@@ -47,16 +50,25 @@ async function verificarCredenciales(){
     {
         if(usuarios[index].password == password){
             //console.log("Inicio de sesion correcto");
-            let login = document.getElementById("login");
-            login.hidden = true;
-            let loggedIn = document.getElementById("loggedIn");
-            loggedIn.hidden = false;
-            loggedIn.innerHTML += `
+            // let login = document.getElementById("login");
+            // login.hidden = true;
+            // let loggedIn = document.getElementById("loggedIn");
+            // loggedIn.hidden = false;
+            // loggedIn.innerHTML += `
+            //     <div class="font-weight-bolder text-info text-gradient">
+            //         Bienvenido ${correo}
+            //     </div>
+            //     <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" onclick="cerrarSesion()">Cerrar Sesion</button>
+            // `;
+            // Haciendo lo mismo de arriba pero con jquery;
+            $('#login').prop('hidden',true);
+            $('#loggedIn').prop('hidden',false);
+            $('#loggedIn').html(`
                 <div class="font-weight-bolder text-info text-gradient">
                     Bienvenido ${correo}
                 </div>
                 <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" onclick="cerrarSesion()">Cerrar Sesion</button>
-            `;
+            `);
         }
         else
         {
@@ -66,40 +78,20 @@ async function verificarCredenciales(){
     else {
         alert("Las credenciales no son correctas2.");
     }
-    //console.log(usuarios);
-    // let index = usuarios.findIndex(c => c.email == correo);
-    // //console.log(index);
-    // if(index != -1)
-    // {
-    //     if(usuarios[index].password == password){
-    //         //console.log("Inicio de sesion correcto");
-    //         let login = document.getElementById("login");
-    //         login.hidden = true;
-    //         let loggedIn = document.getElementById("loggedIn");
-    //         loggedIn.hidden = false;
-    //         loggedIn.innerHTML += `
-    //             <div class="font-weight-bolder text-info text-gradient">
-    //                 Bienvenido ${correo}
-    //             </div>
-    //             <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" onclick="cerrarSesion()">Cerrar Sesion</button>
-    //         `;
-    //     }
-    //     else
-    //     {
-    //         alert("Las credenciasles no son correctas.");
-    //     }
-    // }
-    // else {
-    //     alert("Las credenciasles no son correctas.");
-    // }
     
 }
 function cerrarSesion(){
-    let login = document.getElementById("login");
-    login.hidden = false;
-    let loggedIn = document.getElementById("loggedIn");
-    loggedIn.innerHTML = "";
-    loggedIn.hidden=true;
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
+    // let login = document.getElementById("login");
+    // login.hidden = false;
+    // let loggedIn = document.getElementById("loggedIn");
+    // loggedIn.innerHTML = "";
+    // loggedIn.hidden=true;
+    // document.getElementById("email").value = "";
+    // document.getElementById("password").value = "";
+    // Lo mismo que lo de arriba pero con JQuery
+    $('#login').prop('hidden',false);
+    $('#loggedIn').html('');
+    $('#loggedIn').prop('hidden',true);
+    $("#email").val('');
+    $("#password").val('');
 }
