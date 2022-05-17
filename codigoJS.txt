@@ -1,0 +1,60 @@
+  type Animal = 'Cheetah' | 'Lion' | 'Gato';
+  const test1 : Animal = 'Gato';
+  let test2: Animal = 'Cheetah';
+
+  enum Estaciones {Primavera, Verano, Otono, Invierno};
+
+  let estacionesDelAnio: Estaciones;
+  estacionesDelAnio = Estaciones.Invierno;
+
+  console.log(estacionesDelAnio);
+
+  function imprimeMensaje(mensaje:string) : void {
+      console.log(mensaje);
+  }
+
+  function suma(num1:number, num2:number):number {
+      return num1 + num2;
+  }
+
+  function evaluaMaximo(numbers : number[]) : number{
+      let maximo = 0;
+      for(let i = 0; i < numbers.length; i++){
+          if(maximo < numbers[i])
+            maximo = numbers[i];
+      }
+      return maximo;
+  }
+
+  function evaluaMaximoI(numeros:number[]) : number{
+      return numeros.reduce(function(prev,next){
+          return (prev > next ? prev : next);
+      })
+  }
+
+  function sumaNumerosArreglo(numeros:number[]) : number{
+      return numeros.reduce((prev,next) => prev+next);
+  }
+
+  function pruebaOpcionales(cad1:string, cad2?:string):string{
+      if(!cad2)
+        cad2 = 'no vino';
+      return `${cad1} ${cad2}`;
+  }
+
+  function saludaALaGente(saludo : string, ... personas:string[]){
+      return saludo + personas.join(', ') + '!');
+  }
+  const numbers = [2, 23, 43, 22, 45, 1, 9, 0, 33, 1000];
+
+  let maximo = evaluaMaximo(numbers);
+  console.log(maximo);
+
+let numeros : number[] = [2.5, 44.2, 0.1234,  332, 1.18231];
+
+  maximo = evaluaMaximoI(numeros);
+  console.log(maximo);
+  console.log(sumaNumerosArreglo(numeros));
+
+  console.log(pruebaOpcionales('Valor 1'));
+  console.log(saludaALaGente('Hola ', 'Hugo', 'Paco', 'Johan'));
