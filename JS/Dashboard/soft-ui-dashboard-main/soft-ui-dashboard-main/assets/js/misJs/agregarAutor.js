@@ -104,12 +104,14 @@ function agregarAutor(){
             $('#txtPuesto').val('')
             $('#txtFechaIngreso').val('')
             $('#txtStatus').val('')
+            $('#formularioAutor').hide();
             cargarAutores();
         }
     });
 }
 
 function mostrarFormularioAutor(){
-    let formulario = document.getElementById("formularioAutor");
-    formulario.style.display = "block";
+    //let formulario = document.getElementById("formularioAutor");
+    //formulario.style.display = "block";
+    $('#formularioAutor').show();
 }
