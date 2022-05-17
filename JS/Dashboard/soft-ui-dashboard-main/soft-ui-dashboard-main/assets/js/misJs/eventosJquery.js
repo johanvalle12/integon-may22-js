@@ -32,5 +32,13 @@ $(() => {
             $(this).css('backgroundColor','white');
         }
     });
+
+    $(document).on('mouseenter', '#listaAutores td', function(){
+        $(this).css('backgroundColor','yellow');
+    });
+
+    $(document).on('mouseleave', '#listaAutores td', function(){
+        $(this).css('backgroundColor','white');
+    });
 });
     
