@@ -58,3 +58,44 @@ let numeros : number[] = [2.5, 44.2, 0.1234,  332, 1.18231];
 
   console.log(pruebaOpcionales('Valor 1'));
   console.log(saludaALaGente('Hola ', 'Hugo', 'Paco', 'Johan'));
+
+class CuentaBancaria {
+      noCuenta : string;
+      saldo : number;
+
+      constructor(noCuenta : string, saldo : number){
+          this.noCuenta = noCuenta;
+          this.saldo = saldo;
+      }
+  }
+
+  class TarjetaDeCredito extends CuentaBancaria {
+      tasaInteres : number;
+
+      constructor(noCuenta : string, saldo : number, tasaInteres:number){
+          super(noCuenta, saldo);
+          this.tasaInteres = tasaInteres;
+      }
+  }
+
+  class Pagare extends CuentaBancaria {
+      plazo : number;
+
+      constructor(noCuenta : string, saldo : number, plazo:number){
+          super(noCuenta, saldo);
+          this.plazo = plazo;
+      }
+  }
+
+  function recorreArreglo<T extends CuentaBancaria>(args: T[]){
+      args.forEach(x => {
+          //console.log(`El numero de cuenta es: ${x.noCuenta}\nEl saldo es: ${x.saldo}`);
+          console.log(x);
+      });
+  }
+
+  let tarjetas : TarjetaDeCredito[] = [new TarjetaDeCredito('123456', 1200, 10), new TarjetaDeCredito('654321', 2220, 6)];
+  let pagares: Pagare[] = [new Pagare("12345", 1000, 5), new Pagare('54321', 500, 10)];
+
+  recorreArreglo<TarjetaDeCredito>(tarjetas);
+  recorreArreglo<Pagare>(pagares);
