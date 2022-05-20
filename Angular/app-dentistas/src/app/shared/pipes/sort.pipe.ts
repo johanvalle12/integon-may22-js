@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Persona } from "./persona";
+import { Persona } from "../interfaces/persona";
 
 @Pipe({
   name: 'sort'

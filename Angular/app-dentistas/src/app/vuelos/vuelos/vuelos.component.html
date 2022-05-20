@@ -1,0 +1,41 @@
+<div>
+  <div class="form-group">
+    <label>Numero de Vuelo: </label>
+    <input type="text" id="txtNumeroVuelo" [(ngModel)]="numeroVuelo">
+  </div>
+  <div class="form-group">
+    <label>Fecha: </label>
+    <input type="text" id="txtFecha" [(ngModel)]="fecha">
+  </div>
+  <div class="form-group">
+    <label>Horario: </label>
+    <input type="text" id="txtHorario" [(ngModel)]="horario">
+  </div>
+  <div class="form-group">
+    <label>Origen: </label>
+    <input type="text" id="txtOrigen" [(ngModel)]="origen">
+  </div>
+  <div class="form-group">
+    <label>Destino: </label>
+    <input type="text" id="txtDestino" [(ngModel)]="destino">
+  </div>
+  <button type="button" class="btn btn-primary" (click)="agregarVuelo()">Agregar</button>
+</div>
+<table>
+  <thead>
+    <th>Numero de Vuelo</th>
+    <th>Fecha</th>
+    <th>Horario</th>
+    <th>Origen</th>
+    <th>Destino</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vuelo of vuelos">
+      <td>{{vuelo.numeroVuelo}}</td>
+      <td>{{vuelo.fecha}}</td>
+      <td>{{vuelo.horario}}</td>
+      <td>{{vuelo.origen | uppercase}}</td>
+      <td>{{vuelo.destino | uppercase}}<td>
+    </tr>
+  </tbody>
+</table>
