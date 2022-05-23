@@ -24,12 +24,14 @@ mongo.connect(url, {
     }
     db = client.db("cursojavascript");
     db2 = client.db("angulardb");
+    db3 = client.db("adminprodb");
     console.log("Conectado a la BD");
     alumnos = db.collection("alumnos");
     autores = db.collection("autores");
     usuarios = db.collection("usuarios");
     personas = db2.collection("personas");
     vuelos = db2.collection("vuelos");
+    usersAdminPro = db3.collection("users");
 });
 
 
@@ -48,6 +50,55 @@ app.get("/alumnos", (request,response) => {
         }
         response.status(200).json({alumnos:items});
     })
+});
+
+app.get("/users-adminpro", (request,response) => {
+    console.log("Se ejecuto la ruta users-adminpro...");
+    usersAdminPro.find().toArray((err,items) => {
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+        response.status(200).json({usuarios:items});
+    })
+});
+
+app.get("/users-adminpro/:email/:password", (request,response) => {
+    console.log("Se ejecuto la ruta user-adminpro...");
+    usersAdminPro.findOne({email:request.params.email, password:request.params.password}, function(err, usuario) {
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+        if(usuario != null)
+            response.status(200).json(true);
+        else{
+            let usuario2 = {
+                name : "",
+                email : "",
+                password : ""
+            }
+            response.status(200).json(false);
+        }
+    });
+});
+
+app.post("/users-adminpro", (request,response) => {
+    usersAdminPro.insertOne({
+        name: request.body.name,
+        email: request.body.email,
+        password: request.body.password
+    }, (err, result) =>{
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+        response.status(200).json({usuario:result});
+    });
+    console.log("Se agrego un usuario a adminprodb.");
 });
 
 app.get("/personas", (request,response) => {
