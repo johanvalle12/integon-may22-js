@@ -75,12 +75,7 @@ app.get("/users-adminpro/:email/:password", (request,response) => {
         if(usuario != null)
             response.status(200).json(true);
         else{
-            let usuario2 = {
-                name : "",
-                email : "",
-                password : ""
-            }
-            response.status(200).json(false);
+            response.status(200).json(false);git 
         }
     });
 });
