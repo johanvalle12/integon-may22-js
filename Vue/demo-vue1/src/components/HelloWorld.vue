@@ -1,15 +1,34 @@
 <template>
-  <div class="hello">
-    Mi primer componente {{msg}}
+  <div>
+    <div class="hello">
+      Mi primer componente {{msg}}
+    </div>
+    <CardExample>
+        <template v-slot:image>
+          <img src="https://picsum.photos/id/1015/300" />
+        </template>
+        
+        <template #title>
+          <h2>My Holiday picture</h2>
+        </template>
+        
+        <template #description>
+          <p>Here I can describe the contents of the picture.</p>
+          <p>For example what we can see in the photo is a nice
+          landscape.</p>
+        </template>
+    </CardExample>
   </div>
 </template>
 
 <script>
+  import CardExample from './Card-Example.vue'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  components: { CardExample}
 }
 </script>
 

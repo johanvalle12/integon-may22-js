@@ -29,8 +29,6 @@
           </div>
         </article>
       </section>
-
-      
     </div>
   </div>
 </template>
